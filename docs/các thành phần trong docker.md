@@ -41,7 +41,7 @@
  Quy tắt đặt tên images: [REPOSITORY:TAG]
   *Trong đó, TAG là phiên bản của images. Mặc định, khi không khai báo tag thì docker sẽ hiểu tag là latest*
   
-  ### Một số lệnh làm việc với images
+  #### Một số lệnh làm việc với images
   - Liệt kê các images tồn tại trên host: `docker images`
   
   Kết quả:
@@ -100,3 +100,43 @@ Trong đó:
  Ta có thể kết nối 1 hoặc nhiều network, lưu trữ nó, hoặc thậm chí tạo ra 1 image mới dựa trên trạng thái của nó.
  
  Container có ý nghĩa tương tự như là 1 VM trong ảo hóa VMware. 
+ 
+ #### Một số lệnh làm việc với container
+ 
+ - Liệt kê số lượng container đang chạy trên host: `docker ps`
+ 
+ - Để hiển thị tất cả các container đang có trên host, thêm tham số `-a` : `docker ps -a`
+ 
+ - Tạo và chạy một container từ image, nếu image không có sẵn trên local host thì docker sẽ tìm trên docker hub về để chạy: ` docker run --name [tên container] -it [ten image] /bin/bash`
+
+Trong đó:
+ -t: cho phép kết nối vào terminal để tương tác 
+ -i: duy trì mở stdin để nhập lệnh 
+ 
+ 
+ *Chỉ sử dụng tham số -it thì khi thoát terminal của docker bằng exit, docker sẽ bị dừng. Nếu không muốn dừng container, sử dụng tổ hợp phím ctrl+P và ctrl +Q*
+ 
+ - Xem thông tin chi tiết về một container: `docker inspect [tên container/ID container]`
+ 
+ - Commit 1 container thành image: `docker commit [tên container/ID container] [tên image]:tag`
+ 
+ - Khởi động/dừng một container: `docker [restart|start|stop] [tên container/ID container]`
+ 
+ - Xóa một container ở trạng thái exited: `docker rm [tên container/ID container]`. Thêm tham số `-f` để xóa container đang chạy.
+ 
+ - Kết nối lại terminal của 1 container đang chạy: `docker attach [tên container/ID container]`.
+ 
+**NETWORK**: Cung cấp một private network mà chỉ tồn tại giữa container và host.
+
+**VOLUME**: volume được thiết kể để lưu trữ các dữ liệu độc lập với vòng đời của container.
+
+Biểu đồ minh họa các lệnh phổ biến của Docker Client và mối quan hệ giữa các thành phần trên:
+
+<img src="https://i.imgur.com/qs7nzjV.png">
+
+# Tài liệu tham khảo
+- Nigel Poulton - Docker Deep Dive (2018)
+
+- https://github.com/hocchudong/ghichep-docker
+
+https://techblog.vn/tim-hieu-ve-docker
