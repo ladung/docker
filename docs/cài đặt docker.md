@@ -77,14 +77,13 @@ Hint: Some lines were ellipsized, use -l to show in full.
 ```sh
 docker pull hello-world
 ```
-
-      - Kết quả như sau:
+	- Kết quả như sau:
 	
-		```sh
+```sh
 		Using default tag: latest
 		latest: Pulling from library/hello-world
 		0e03bdcc26d7: Pull complete 
 		Digest: sha256:8e3114318a995a1ee497790535e7b88365222a21771ae7e53687ad76563e8e76
 		Status: Downloaded newer image for hello-world:latest
 		docker.io/library/hello-world:latest
-		```
+```
