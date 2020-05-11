@@ -24,19 +24,51 @@
 **Thêm repo docker**
 
 ```sh
-	yum-config-manager \
-		--add-repo \
-		https://download.docker.com/linux/centos/docker-ce.repo
+yum-config-manager \
+	--add-repo \
+	https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
 **Cài đặt bản lastest của Docker CE**
 
 ```sh
-	yum install docker-ce docker-ce-cli containerd.io
+yum install docker-ce docker-ce-cli containerd.io
 ```
-**Khởi động docker, kiểm tra version**
+
+**Khởi động docker**
+
 ```sh
-	systemctl start docker
-	docker --version
+systemctl start docker
 ```
-*Docker version 19.03.8, build afacb8b*
+
+**Kiểm tra trạng thái sau khi khởi động**
+
+```sh
+systemctl status docker
+```
+
+ - Kết quả hiện ra như sau là ok:
+ 
+```sh
+docker.service - Docker Application Container Engine
+   Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; vendor preset: disabled)
+   Active: active (running) since Mon 2020-05-11 14:45:41 +07; 5min ago
+     Docs: https://docs.docker.com
+ Main PID: 9473 (dockerd)
+    Tasks: 10
+   Memory: 43.9M
+   CGroup: /system.slice/docker.service
+           â””â”€9473 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/cont...
+
+May 11 14:45:40 CentOS dockerd[9473]: time="2020-05-11T14:45:40.571270410+0...pc
+May 11 14:45:40 CentOS dockerd[9473]: time="2020-05-11T14:45:40.571284519+0...pc
+May 11 14:45:40 CentOS dockerd[9473]: time="2020-05-11T14:45:40.571291869+0...pc
+May 11 14:45:40 CentOS dockerd[9473]: time="2020-05-11T14:45:40.761093609+0...."
+May 11 14:45:41 CentOS dockerd[9473]: time="2020-05-11T14:45:41.151239409+0...s"
+May 11 14:45:41 CentOS dockerd[9473]: time="2020-05-11T14:45:41.394334701+0...."
+May 11 14:45:41 CentOS dockerd[9473]: time="2020-05-11T14:45:41.472753705+0....8
+May 11 14:45:41 CentOS dockerd[9473]: time="2020-05-11T14:45:41.472870858+0...n"
+May 11 14:45:41 CentOS dockerd[9473]: time="2020-05-11T14:45:41.683771233+0...k"
+May 11 14:45:41 CentOS systemd[1]: Started Docker Application Container Engine.
+Hint: Some lines were ellipsized, use -l to show in full.
+```
