@@ -26,7 +26,7 @@
  
  **image**
  
- Image là một template read-only sử dụng để chạy container.
+ Image là một template read-only sử dụng để chạy container. Image có ý nghĩa tương tự như VM template trên VMWare.
 
  Một image có thể base trên một image khác. *Ví dụ bạn muốn tạo một image nginx, tất nhiên nginx phải chạy trên linux CentOS chẳng hạn. Khi đó image nginx trước hết sẽ phải base trên CentOS trước đã.*
 
@@ -92,3 +92,11 @@ Trong đó:
  Cột OFFICIAL: Là images chính thức do công ty Docker cung cấp. Trạng thái là OK.
  
  *Sau khi xác định được images muốn sử dụng, bạn sử dụng tiếp lệnh docker pull để kéo images từ internet về host cài docker của bạn.*
+ 
+ - Xóa một image: `docker rmi [tên image/ID image]`
+ 
+ **Container**: là một instance của một image. Bạn có thể create, start, stop, move or delete container dựa trên Docker CLI. 
+ 
+ Ta có thể kết nối 1 hoặc nhiều network, lưu trữ nó, hoặc thậm chí tạo ra 1 image mới dựa trên trạng thái của nó.
+ 
+ Container có ý nghĩa tương tự như là 1 VM trong ảo hóa VMware. 

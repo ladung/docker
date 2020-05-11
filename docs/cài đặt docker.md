@@ -117,3 +117,10 @@ docker pull hello-world
 		For more examples and ideas, visit:
 		https://docs.docker.com/get-started/
 ```
+
+# Tài liệu tham khảo
+- Nigel Poulton - Docker Deep Dive (2018)
+
+- https://blog.cloud365.vn/container/tim-hieu-docker-phan-2/
+
+- https://docs.docker.com/engine/install/centos/

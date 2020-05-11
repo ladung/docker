@@ -40,3 +40,8 @@ Container là một giải pháp để chuyển giao phần mềm một cách đ
 - Hỗ trợ phát triển và quản lý ứng dụng nhanh: Đối với Dev, sử dụng docker giúp họ giảm thiểu thời gian setup môi trường, đóng gói được các môi trường giống nhau từ Dev - Staging - Production :v
 - Mã nguồn mở: Cộng đồng support lớn, các tính năng mới được release liên tục.
 
+# Tài liệu tham khảo
+- Nigel Poulton - Docker Deep Dive (2018)
+
+- https://viblo.asia/p/docker-chua-biet-gi-den-biet-dung-phan-1-lich-su-ByEZkWrEZQ0
+
