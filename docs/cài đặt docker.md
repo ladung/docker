@@ -13,24 +13,24 @@
     Có hai phiên bản của Docker CE là Edge và Stable. Bản Edge sẽ được release hàng tháng với các tính năng mới nhất, còn Stable sẽ release theo quý.
     *Phiên bản mà ta sử dụng để tìm hiểu là Docker CE do đó ta sẽ cài đặt Docker CE*
 ## Cài bản stable mới nhất
-**1. Chuẩn bị:** OS demmo: Centos 7 64bit
+**Chuẩn bị** OS demmo: Centos 7 64bit
 
 **Cài đặt gói cần thiết**
 
-	```sh
+```sh
 		yum install -y yum-utils
-	```
+```
 
 **Thêm repo docker**
 
-	```sh
+```sh
 		yum-config-manager \
 			--add-repo \
 			https://download.docker.com/linux/centos/docker-ce.repo
-	```
+```
 
 **Cài đặt bản lastest của Docker CE**
 
-	```sh
+```sh
 		yum install docker-ce docker-ce-cli containerd.io
-	```
+```
