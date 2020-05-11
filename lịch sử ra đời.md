@@ -1,4 +1,4 @@
-# I. Lịch sử ra đời docker
+# I. Giới thiệu về Docker
 ## 1. Vitualization
  Từ xưa, mô hình máy chủ thường là máy chủ vật lý + hệ điều hành (OS) + application.
  <img src ="https://i.imgur.com/OCNuS4g.png">
@@ -36,6 +36,7 @@ Container là một giải pháp để chuyển giao phần mềm một cách đ
  
 - Sử dụng ít tài nguyên: Thay vì phải ảo hóa toàn bộ hệ điều hành thì chỉ cần build và chạy các container độc lập sử dụng chung kernel duy nhất.
 - Tính đóng gói và di động: Tất cả các gói dependencies cần thiết đều được đóng gói vừa đủ trong container. Và sau đó có thể mang đi triển khai trên các server khác.
-- Cô lập tài nguyên: server bố không biết ở trong container chạy gì và container cũng không cần biết bố nó là CentOs hay Ubuntu =)). Các container độc lập với nhau và có thể giao tiếp với nhau bằng một interface
+- Cô lập tài nguyên: server cha không biết ở trong container chạy gì và container cũng không cần biết nó đang chạy  trên OS nào.
 - Hỗ trợ phát triển và quản lý ứng dụng nhanh: Đối với Dev, sử dụng docker giúp họ giảm thiểu thời gian setup môi trường, đóng gói được các môi trường giống nhau từ Dev - Staging - Production :v
 - Mã nguồn mở: Cộng đồng support lớn, các tính năng mới được release liên tục.
+
