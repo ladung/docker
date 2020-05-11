@@ -126,9 +126,9 @@ Trong đó:
  
  - Kết nối lại terminal của 1 container đang chạy: `docker attach [tên container/ID container]`.
  
-**NETWORK**: Cung cấp một private network mà chỉ tồn tại giữa container và host.
+**NETWORK**: Cung cấp một private network mà chỉ tồn tại giữa container và host. (*sẽ giới thiệu thêm sau*)
 
-**VOLUME**: volume được thiết kể để lưu trữ các dữ liệu độc lập với vòng đời của container.
+**VOLUME**: volume được thiết kể để lưu trữ các dữ liệu độc lập với vòng đời của container. (*sẽ giới thiệu thêm sau*)
 
 Biểu đồ minh họa các lệnh phổ biến của Docker Client và mối quan hệ giữa các thành phần trên:
 
@@ -139,4 +139,4 @@ Biểu đồ minh họa các lệnh phổ biến của Docker Client và mối q
 
 - https://github.com/hocchudong/ghichep-docker
 
-https://techblog.vn/tim-hieu-ve-docker
+- https://techblog.vn/tim-hieu-ve-docker 
