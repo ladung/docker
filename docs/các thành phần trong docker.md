@@ -42,4 +42,53 @@
   *Trong đó, TAG là phiên bản của images. Mặc định, khi không khai báo tag thì docker sẽ hiểu tag là latest*
   
   ### Một số lệnh làm việc với images
-  - Liệt kê các images: `docker images`
+  - Liệt kê các images tồn tại trên host: `docker images`
+  
+  Kết quả:
+  
+  ```sh
+ [root@CentOS ~]# docker images
+	REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+    hello-world         latest              bf756fb1ae65        4 months ago        13.3kB
+  ```
+  - Tìm kiếm image từ Docker Hub: `docker search centos`. Kết quả sẽ trả về các image có tên centos 
+  
+  ```sh
+  [root@CentOS ~]# docker search centos
+NAME                               DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+centos                             The official build of CentOS.                   5991                [OK]                
+ansible/centos7-ansible            Ansible on Centos7                              128                                     [OK]
+consol/centos-xfce-vnc             Centos container with "headless" VNC sessionâ€¦   114                                     [OK]
+jdeathe/centos-ssh                 OpenSSH / Supervisor / EPEL/IUS/SCL Repos - â€¦   114                                     [OK]
+centos/mysql-57-centos7            MySQL 5.7 SQL database server                   75                                      
+imagine10255/centos6-lnmp-php56    centos6-lnmp-php56                              58                                      [OK]
+tutum/centos                       Simple CentOS docker image with SSH access      46                                      
+centos/postgresql-96-centos7       PostgreSQL is an advanced Object-Relational â€¦   44                                      
+centos/httpd-24-centos7            Platform for running Apache httpd 2.4 or buiâ€¦   31                                      
+kinogmt/centos-ssh                 CentOS with SSH                                 29                                      [OK]
+pivotaldata/centos-gpdb-dev        CentOS image for GPDB development. Tag namesâ€¦   11                                      
+guyton/centos6                     From official centos6 container with full upâ€¦   10                                      [OK]
+drecom/centos-ruby                 centos ruby                                     6                                       [OK]
+centos/tools                       Docker image that has systems administrationâ€¦   6                                       [OK]
+pivotaldata/centos                 Base centos, freshened up a little with a Doâ€¦   4                                       
+mamohr/centos-java                 Oracle Java 8 Docker image based on Centos 7    3                                       [OK]
+darksheer/centos                   Base Centos Image -- Updated hourly             3                                       [OK]
+pivotaldata/centos-gcc-toolchain   CentOS with a toolchain, but unaffiliated wiâ€¦   3                                       
+pivotaldata/centos-mingw           Using the mingw toolchain to cross-compile tâ€¦   3                                       
+miko2u/centos6                     CentOS6 æ—¥æœ¬èªžç’°å¢ƒ                                   2                                       [OK]
+blacklabelops/centos               CentOS Base Image! Built and Updates Daily!     1                                       [OK]
+indigo/centos-maven                Vanilla CentOS 7 with Oracle Java Developmenâ€¦   1                                       [OK]
+pivotaldata/centos6.8-dev          CentosOS 6.8 image for GPDB development         0                                       
+pivotaldata/centos7-dev            CentosOS 7 image for GPDB development           0                                       
+smartentry/centos                  centos with smartentry                          0                                       [OK]
+  ```
+  
+Trong đó:
+
+ Cột NAME : tên của images
+
+ Cột DESCRIPTION: Mô tả ngắn gọn của images
+
+ Cột OFFICIAL: Là images chính thức do công ty Docker cung cấp. Trạng thái là OK.
+ 
+ *Sau khi xác định được images muốn sử dụng, bạn sử dụng tiếp lệnh docker pull để kéo images từ internet về host cài docker của bạn.*
