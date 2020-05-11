@@ -16,7 +16,7 @@
  
  ## 2. Containerlization
 
- <img src="https://i.imgur.com/zPfEoVL.png")
+ <img src="https://i.imgur.com/zPfEoVL.png")>
  
   Với công nghệ này, trên một máy chủ vật lý, ta sẽ sinh ra được nhiều máy con (giống với công nghệ ảo hóa virtualization), nhưng tốt hơn ở chỗ là các máy con này (Guess OS) đều dùng chung phần nhân của máy mẹ (Host OS) và chia sẻ với nhau tài nguyên máy mẹ. Có thể nói là khi nào cần tài nguyên thì được cấp, cần bao nhiêu thì cấp bấy nhiêu, như vậy việc tận dụng tài nguyên đã tối ưu hơn.
  
