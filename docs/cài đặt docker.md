@@ -18,19 +18,25 @@
 **Cài đặt gói cần thiết**
 
 ```sh
-		yum install -y yum-utils
+	yum install -y yum-utils
 ```
 
 **Thêm repo docker**
 
 ```sh
-		yum-config-manager \
-			--add-repo \
-			https://download.docker.com/linux/centos/docker-ce.repo
+	yum-config-manager \
+		--add-repo \
+		https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
 **Cài đặt bản lastest của Docker CE**
 
 ```sh
-		yum install docker-ce docker-ce-cli containerd.io
+	yum install docker-ce docker-ce-cli containerd.io
 ```
+**Khởi động docker, kiểm tra version**
+```sh
+	systemctl start docker
+	docker --version
+```
+*Docker version 19.03.8, build afacb8b*
