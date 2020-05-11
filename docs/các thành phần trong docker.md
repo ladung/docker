@@ -1,4 +1,4 @@
-#1. Docker Engine
+# 1. Docker Engine
  Docker Engine là thành phần chính của Docker. Nó hoạt động như một ứng dụng client-server.
  
  Các thành phần của Docker Engine:
@@ -9,7 +9,7 @@
  
  <img src="https://i.imgur.com/4ebOxUy.png">
  
- #2. Kiến trúc của Docker
+ # 2. Kiến trúc của Docker
   Docker sử dụng kiến trúc client-server. Docker server (hay còn gọi là daemon) sẽ chịu trách nhiệm build, run, distrubute Docker container. Docker client và Docker server có thể nằm trên cùng một server hoặc khác server. Chúng giao tiếp với nhau thông qua REST API dựa trên UNIX sockets hoặc network interface.
  ## Docker daemon
  Docker daemon (dockerd) là thành phần core, lắng nghe API request và quản lý các Docker object. Docker daemon host này cũng có thể giao tiếp được với Docker daemon ở host khác.
