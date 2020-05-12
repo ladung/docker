@@ -1,11 +1,10 @@
 # Containerizing an app
- - Đưa ứng dụng vào container và ta sẽ tạo ra ứng dụng bằng build, ship, run. Quá trình như sau:
-  
-  - code của app
-  - viết 1 dockerfile để miêu tả app, các thành phần phụ thuộc và cách run nó.
+- Đưa ứng dụng vào container và ta sẽ tạo ra ứng dụng bằng build, ship, run. Quá trình như sau:
+  - Code của app
+  - Viết 1 dockerfile để miêu tả app, các thành phần phụ thuộc và cách run nó.
   - Tạo image từ dockerfile: docker image build 
  
- - 	Bây giờ ta có thể mang nó đi và  chạy nó như một container.
+- 	Bây giờ ta có thể mang nó đi và chạy nó như một container.
  
  <img src="https://i.imgur.com/aBcOXGr.png">
  
@@ -81,6 +80,6 @@ Login Succeeded
  ```
  - Đổi tag:`docker image tag web:latest ladung/web:latest`. Do ta phải cần truyền tên của repository với các unoffical repository.
  - push image lên repository: `docker image push ladung/web:latest`
+ 
  **Run app**
  `docker container run -d --name web1 -p 80:8080 web:latest`
- 
