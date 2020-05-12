@@ -64,7 +64,7 @@ Successfully built a6529223ef47
 Successfully tagged web:latest
  ```
  
- **push image**
+ ##Ship apps
  - Sau khi tạo được image, ta có thể lưu image trong một registry (Docker hub) để đảm bảo an toàn cũng như cho người khác sử dụng. 
  *login docker hub*
  ```sh
@@ -81,5 +81,91 @@ Login Succeeded
  - Đổi tag:`docker image tag web:latest ladung/web:latest`. Do ta phải cần truyền tên của repository với các unoffical repository.
  - push image lên repository: `docker image push ladung/web:latest`
  
- **Run app**
+ ##Run app
  `docker container run -d --name web1 -p 80:8080 web:latest`
+
+- View lại các layer đã được tạo ra trong quá trình build image: `docker image history web:latest`
+
+# Multi-stage build
+- Multi-stage build là tính năng cho phép bạn tạo nhiều image trung gian từ cùng một Dockerfile. Khi chương trình được bạn xây dựng và chương trình đó chỉ cần chạy 1 hoặc vài file thực thi, cấu hình. Các file trong chương trình đó lại yêu cầu cần cài đặt môi trường, gói, mô-đun rất khó và phức tạp. Nó còn cần một dung lượng khá cao nên có thể khiến cho file Images của bạn nặng hơn. Mục tiêu của tính năng này là làm cho image luôn nhỏ và nhẹ nhất có thể.
+
+*ví dụ*
+```sh
+FROM node:latest AS storefront
+WORKDIR /usr/src/atsea/app/react-app
+COPY react-app .
+RUN npm install
+RUN npm run build
+
+FROM maven:latest AS appserver
+WORKDIR /usr/src/atsea
+COPY pom.xml .
+RUN mvn -B -f pom.xml -s /usr/share/maven/ref/settings-docker.xml dependency\
+:resolve
+COPY . .
+RUN mvn -B -s /usr/share/maven/ref/settings-docker.xml package -DskipTests
+
+FROM java:8-jdk-alpine AS production
+RUN adduser -Dh /home/gordon gordon
+WORKDIR /static
+COPY --from=storefront /usr/src/atsea/app/react-app/build/ .
+WORKDIR /app
+COPY --from=appserver /usr/src/atsea/target/AtSea-0.0.1-SNAPSHOT.jar .
+ENTRYPOINT ["java", "-jar", "/app/AtSea-0.0.1-SNAPSHOT.jar"]
+CMD ["--spring.profiles.active=postgres"]
+```
+
+- Có thể thấy Dockerfile có 3 stage, mỗi stage bắt đầu từ `FROM instructions`. Các stage được đặt tên bằng từ khóa `AS` và có thể COPY giữa các stage bằng cờ `--from=<stage name>`
+
+# Best practies
+## Build cache
+- Tính năng giúp giảm thời gian build bằng cách tận dụng cách layer đã được build những lần trước đó. Ta nên sắp xếp lại sao cho phần lệnh ít thay đổi sẽ nằm ở trên, phần lệnh thay đổi thường xuyên nằm phía dưới.
+- Trong quá trình build image, nếu chỉ 1 layer không được cache thì toàn bộ quá trình sau đó, cache sẽ không được sử dụng.
+- Nếu không muốn build cache, truyền vào lệnh tham số `--no-cache=true`.
+## Squash image
+- Đây là một tiện ích để nến nhiều docker layer để tạo thành images có ít layer. Thường được sử dụng khi muốn tạo một base image.
+
+<img src="https://i.imgur.com/tdNI0VE.png">
+
+# Dockerfile
+## Cấu trúc
+
+`Dockerfile Systax`
+
+```sh
+\#Comment
+INSTRUCTION arguments
+```
+
+## Các thành phần cơ bản:
+- FROM: chỉ định base image. Base image thông thường sẽ được lấy từ Docker Hub - nơi lưu trữ và chia sẻ các image mà từ đó bạn có thể lấy về và tùy chỉnh
+
+- RUN: dùng để thực thi một command bất kỳ trong quá trình build image, thường thì nó được dùng để build các package trong image
+
+- CMD: dùng để thực thi một command bất kỳ trong quá trình chạy container. CMD sẽ không thực thi bất cứ thứ gì trong quá trính build image và mỗi Dockerfile chỉ chứa duy nhất một lệnh CMD
+
+- LABEL: dùng để cung cấp metadata cho image, chứa các thông tin..
+
+- EXPOSE: thiết lập port để truy cập tới container sau khi đã khởi chạy
+
+- ENV: thiết lập các biến môi trường để sử dụng cho các câu lệnh trong quá trình build
+
+- ADD và COPY: sao chép file, thư mục vào container (ADD sẽ cop và giải nen file .tar, .tar.gz, ....)
+
+- ENTRYPOINT: cung cấp một số lệnh mặc định cùng tham số khi thực thi container
+
+- VOLUME: tạo một folder dùng để truy cập và lưu trữ dữ liệu, folder được liên kết từ máy host và container
+
+- USER: dùng để chỉ định username được sử dụng trong quá trình tạo image cho các lệnh RUN, CMD và ENTRYPOINT
+
+- WORKDIR: Thiết lập thư mục làm việc trong container cho các lệnh COPY, ADD, RUN, CMD, và ENTRYPOINT
+
+- ARG: Định nghĩa các biến để sử dụng trong build-time.
+
+- ONBUILD: tạo một trigger cho image để thực thi khi nó được sử dụng làm base image cho việc build một image khác
+
+- HEALTHCHECK: cung cấp phương thức cho Docker để kiểm tra container có hoạt động bình thường hay không.
+
+- SHELL: dùng để thay đổi các lệnh shell mặc định
+
+## 
