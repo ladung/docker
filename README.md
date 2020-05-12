@@ -4,4 +4,4 @@ Việc setup và deploy application lên một hoặc nhiều server rất vất
 
 Công nghệ container hay Docker ngày nay đã rất phổ biến, các bạn hẳn đã quen với các thuật ngữ này!
 
-Sau đây là một vài tổng hợp những kiến thức trong quá trình mình tìm hiểu về công nghệ docker!!
+Sau đây là một vài tổng hợp những kiến thức trong quá trình mình tìm hiểu về công nghệ docker!! Các bạn có thể xem [tại đây](https://github.com/ladung/docker/tree/master/docs)!
