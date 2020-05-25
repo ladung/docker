@@ -109,7 +109,7 @@ Status: Downloaded newer image for ubuntu:18.04
 	- `layer/`: chứa 1 file cho mỗi image và container layer, mỗi file chứa ID của các layer bên dưới stack.
 	- `mnt/`: mount point, gắn kết filesystem cho 1 container.
 - `container layer`: 
-	- `diff/`: 
+	- `diff/`:  Differences introduced in the writable container layer, such as new or modified files
 	- `layer/`: Metadata about the writable container layer’s parent layers.
 	- `mnt/`: mount point cho mỗi container đang chạy.
 
