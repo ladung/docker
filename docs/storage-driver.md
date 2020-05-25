@@ -1,5 +1,5 @@
-- Storage driver điểu khiển cách image và container được lưu trữ và quản lý trên Docker host.
-- Storage drivers cho phép mình create data trong một writable container layer.
+- Storage driver kiểm soát cách image và container được lưu trữ và quản lý trên Docker host.
+- Storage drivers cho phép create data trong một writable container layer.
 - Các files sẽ không được lưu lại sau khi mà container stops. Ta nên sử dụng docker volume thay vì ghi dữ liệu vào container layer.
 
 # Image vs container
