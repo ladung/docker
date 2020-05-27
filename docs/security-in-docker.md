@@ -1,5 +1,4 @@
 # Namespaces
-- Namespaces là một tính năng của Linux Kernel để phân chia các tài nguyên hệ thống như một tập hợp tiến trình(process) chỉ thấy một tập hợp các tài nguyên tương ứng
 - Docker sử dụng công nghệ namespace để cung cấp không gian làm việc cô lập cho container. Khi run một container, docker tạo 1 namespace cho container.
 - Docker sử dụng các namespace sau trên Linux:
   - pid namespace: Docker sử dụng pid namespace cho việc cô lập process trên mỗi container. Mỗi container có cây process cho riêng mình. 1 container không thể thấy hoặc truy cập cây process của container khác hay trên host mà nó đang chạy.
