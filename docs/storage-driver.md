@@ -105,21 +105,25 @@ Status: Downloaded newer image for ubuntu:18.04
 	```
 
 - `image layer`: Tất cả thông tin về image và contianer layer được lưu trong `/var/lib/docker/aufs/`
-	- `diff/`: nội dung của mỗi layer, lưu tại mỗi subfolder riêng
-	- `layer/`: chứa 1 file cho mỗi image và container layer, mỗi file chứa ID của các layer bên dưới stack.
-	- `mnt/`: mount point, gắn kết filesystem cho 1 container.
+	- diff/: nội dung của mỗi layer, mỗi layer được lưu trữ trong một thư mục con riêng
+	- layer/: metadata về cách các image-layer được xếp chồng lên nhau. Thư mục này chứa 1 file cho mỗi image-layer hoặc container-layer chứa trên Docker-host. Mỗi file chứa ID của tất cả các layer bên dưới nó trong stack (cha mẹ của nó).
+	- mnt/: Mount points, một điểm trên mỗi image-layer hoặc container-layer, được sử dụng để lắp ráp và gắn kết filesystem thống nhất cho một container. Đối với image chỉ đọc, các thư mục này luôn trống.
 - `container layer`: 
-	- `diff/`:  Differences introduced in the writable container layer, such as new or modified files
-	- `layer/`: Metadata about the writable container layer’s parent layers.
-	- `mnt/`: mount point cho mỗi container đang chạy.
+	- `diff/`:  Sự khác biệt được giới thiệu trong layer container có thể ghi, chẳng hạn như các tệp mới hoặc sửa đổi.
+	- `layer/`: Metadata về container-layer có thể ghi của lớp cha mẹ.
+	- `mnt/`: Một điểm gắn kết cho mỗi container đang chạy filesystem thống nhất, chính xác như nó xuất hiện từ bên trong container.
 
 ## OverlayFS
-- là một union filesystem tương tự như aufs nhưng nhanh hơn và cách thực hiện đơn giản hơn. Docker cung cấp 2 storage driver cho OverlayFS: overlay và overlay2.
+## 1.Overlay2
+- Các thư mục này được gọi là các layer và tiến trình hợp nhất được gọi là union mount. OverlayFS đề cập đến thư mục thấp hơn là lowerdir và thư mục cao hơn là Upperdir. Chế độ xem thống nhất được hiển thị thông qua thư mục riêng được gọi là merged.
+
+Overlay2 hỗ trợ tối đa 128 OverlayFS layer. Khả năng này cung cấp hiệu suất tốt hơn cho các lệnh Docker liên quan đến layer Docker build và Docker commit và tiêu thụ ít inodes hơn trên backing filesystem.
+
 - OverlayFS được hỗ trợ nếu đáp ứng yêu cầu:
 	- `overlay2` driver được hỗ trợ trên Docker CE và docker EE 17.06.02-ee5 và nó là recommend
 	- Version 4.0 hoặc lớn hơn của Linux kernel. RHEL or CentOS sử dụng kernel version >=3.10.0-514. Các version cũ hơn sẽ sử dụng overlay driver.
 - Overlay2:
 	- OverlayFS gồm có `lowerdir` và `upperdir`. Hiển thị hợp nhất dưới 1 thư mục riêng gọi là `merged`.
 	- Overlay2 hỗ trợ 128 lower OverlayFS layers
-	- Thư mục `l` trong `/var/lib/docker/overlay2` chứa shortened layer identifiers as symbolic links.
-	- Layer thấp nhất chứa file gọi là link,chứa tên shortened identifier.  1 thư mục `diff` chứa nội dung của layer. Layer thấp nhất thứ 2 và các layer cao hơn được gọi là `lower` 
+	- Thư mục `l` trong `/var/lib/docker/overlay2` chứa  các định danh layer rút ngắn làm symbolic links.
+	- Layer thấp nhất chứa file gọi là link,chứa tên của mã định danh được rút ngắn và một file có tên là diff chứa nội dung layer.  1 thư mục `diff` chứa nội dung của layer. Layer thấp nhất thứ 2 và các layer cao hơn được gọi là `lower` 

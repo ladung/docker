@@ -168,3 +168,4 @@ Ví dụ:
 - https://platform9.com/blog/container-namespaces-deep-dive-container-networking/
 - http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/
 - https://shekhargulati.com/2019/01/03/how-docker-uses-cgroups-to-set-resource-limits/
+- https://mirrors.edge.kernel.org/pub/linux/libs/security/linux-privs/kernel-2.2/capfaq-0.2.txt
